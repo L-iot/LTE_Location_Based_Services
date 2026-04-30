@@ -1,14 +1,16 @@
-Build Location Service application with Spring Boot
-Folder ShLCS_spring includes:
+Build a Location Service application with Spring Boot
+The Folder ShLCS_spring includes:
 Location Service block, sends DIAMETER Location Request message to HSS
-Web interface: Handles tasks such as entering MSISDN information; viewing log activity and data received from the DIAMETER Location Answer message
-Folder test includes:
-HSS block receives DIAMETER Location Request message, processes location data and returns it via DIAMETER Location Answer message
-Mongo Database stores user information (Can be integrated with Open5GS's mongoDB)
-LCS application on Sh interface
-File ShLCS/ShLCS.java contains the Sh client block, sends User-Data Request message to the server
 
-File ShLCS/ShServer.java contains the Sh server block, sends User-Data Answer message
+The Web interface: Handles tasks such as entering MSISDN information; viewing log activity and data received from the DIAMETER Location Answer message
+Folder test includes:
+HSS block receives DIAMETER Location Request message, processes location data and returns it via DIAMETER Location Answer message.
+
+The Mongo Database stores user information (Can be integrated with Open5GS's mongoDB)
+LCS application on Sh interface
+File ShLCS/ShLCS.java contains the Sh client block, sends the  User-Data Request message to the server
+
+File ShLCS/ShServer.java contains the Sh server block, sends the User-Data Answer message.
 
 GMLC built on jDiameter
 Source code of jDiameter: https://github.com/RestComm/jdiameter
@@ -16,10 +18,13 @@ Source code of jDiameter: https://github.com/RestComm/jdiameter
 Specifically:
 
 GMLC block contained in GMLC folder
-Both HSS and MME blocks are contained in the Server folder
+Both HSS and MME blocks are contained in the Server folders
+
 HSS in SlhServer.java
+
 MME in SlgServer.java
-File GMLC.java and config.xml contain application code to create the GMLC block and configuration for GMLC to connect to HSS and MME
+
+The File GMLC.java and config.xml contains application code to create the GMLC block and configuration for GMLC to connect to HSS and MME
 
 Interfaces used for Diameter message exchange:
 
@@ -44,7 +49,6 @@ Throw the file example1-1.7.0-SNAPSHOT-jar-with-dependencies.jar into the path .
 
 java -classpath target/example1-1.7.0-SNAPSHOT-jar-with-dependencies.jar org.example.server.ExampleServer
 Run and turn on Wireshark on lo to see the results.
-
 
 
 
