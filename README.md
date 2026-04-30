@@ -37,7 +37,7 @@ SLg / \ SLh
 
 Usage: Start Open5gs to create HSS and MME. Then run GMLC.
 
-To build yourself:
+To build it yourself:
 
 mvn install -f "pom.xml" -Dcheckstyle.skip
 Throw the file example1-1.7.0-SNAPSHOT-jar-with-dependencies.jar into the path .../target/
@@ -49,36 +49,41 @@ Run and turn on Wireshark on lo to see the results.
 
 
 
-# Build ứng dụng Location Service với Spring Boot
+# Build a Location Service application with Spring Boot.
 
-- Folder `ShLCS_spring` gồm:
-  - Khối Location Service, gửi bản tin DIAMETER Location Request tới HSS
-  - Giao diện web: Xử lý tác vụ nhập thông tin MSISDN; xem thông tin log hoạt động và dữ liệu nhận được từ bản tin DIAMETER Location Answer
-- Folder `test` gồm:
-  - Khối HSS tiếp nhận bản tin DIAMETER Location Request, xử lý dữ liệu location trả về bằng bản tin DIAMETER Location Answer
-  - Mongo Database lưu trữ thông tin người dùng (Có thể kết hợp với mongoDB của Open5GS)
+- Folder `ShLCS_spring` including:
+Web interface: Handles the task of entering MSISDN information; View activity logs and data received from the DIAMETER Location Answer message
+- The `test` folder includes:
 
-# LCS application trên Sh interface
+- The HSS block receives the DIAMETER Location Request message and processes the returned location data using the DIAMETER Location Answer message.
 
-File `ShLCS/ShLCS.java` chứa khối Sh client, gửi bản tin User-Data Request tới server
+- The Mongo Database stores user information (can be combined with Open5GS's MongoDB).
 
-File `ShLCS/ShServer.java` chứa khối Sh server, gửi bản tin User-Data Answer
+# LCS application on Sh interface
 
-# GMLC build trên jDiameter
+The `ShLCS/ShLCS.java` file contains the Sh client block, sending the User-Data Request message to the server.
 
-Source code của jDiameter: https://github.com/RestComm/jdiameter
+The `ShLCS/ShServer.java` file contains the Sh server block, sending the User-Data Answer message.
 
-Cụ thể:
-- Khối GMLC chứa trong folder `GMLC`
-- Khối HSS và MME đều chứa trong foler `Server`
-  - HSS trong `SlhServer.java`
-  - MME trong `SlgServer.java`
+# GMLC built on jDiameter
 
-File `GMLC.java` và `config.xml` chứa code ứng dụng để tạo khối GMLC và cấu hình cho GMLC để kết nối với HSS và MME
+JDiameter source code: https://github.com/RestComm/jdiameter
 
-Các interface sử dụng để trao đổi bản tin Diameter:
-- SLh: Kết nối với HSS (127.0.0.8)
-- SLg: Kết nối với MME (127.0.0.2)
+Specifically:
+
+- The GMLC block is located in the `GMLC` folder.
+
+- The HSS and MME blocks are both located in the `Server` folder.
+
+- HSS is in `ShServer.java`.
+
+- MME In `SlgServer.java`
+
+The `GMLC.java` and `config.xml` files contain the application code to create the GMLC block and configure GMLC to connect to the HSS and MME.
+
+The interfaces used to exchange Diameter messages are:
+- SLh: Connects to HSS (127.0.0.8)
+- SLg: Connects to MME (127.0.0.2)
 
 ```
             --------------
@@ -94,15 +99,16 @@ Các interface sử dụng để trao đổi bản tin Diameter:
 
 ```
 
-Sử dụng: Bật `Open5gs` để tạo HSS và MME. Sau đó chạy `GMLC`
+Instructions: Open `Open5gs` to create the HSS and MME. Then run `GMLC`.
 
-Tự build:
+Self-build:
+
 ```
 mvn install -f "pom.xml" -Dcheckstyle.skip
 ```
 
-Ném file `example1-1.7.0-SNAPSHOT-jar-with-dependencies.jar` vào đường dẫn `.../target/`
+Drag the file `example1-1.7.0-SNAPSHOT-jar-with-dependencies.jar` to the path `.../target/`
 ```
 java -classpath target/example1-1.7.0-SNAPSHOT-jar-with-dependencies.jar org.example.server.ExampleServer
 ```
-Chạy và bật wireshark trên `lo` để xem kết quả
+Run and enable Wireshark on `lo` to see the results
